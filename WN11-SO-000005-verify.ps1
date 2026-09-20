@@ -14,12 +14,12 @@
 $admin = Get-LocalUser | Where-Object { $_.SID.Value -like '*-500' } | Select-Object -First 1
 
 if ($null -eq $admin) {
-    Write-Output 'FAIL — expected built-in Administrator (RID 500) account, got <not found>'
+    Write-Output 'FAIL - expected built-in Administrator (RID 500) account, got <not found>'
     exit 1
 }
 
 if ($admin.Enabled) {
-    Write-Output 'FAIL — expected Administrator account Disabled, got Enabled'
+    Write-Output 'FAIL - expected Administrator account Disabled, got Enabled'
     exit 1
 }
 

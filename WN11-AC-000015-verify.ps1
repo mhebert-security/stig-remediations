@@ -17,14 +17,14 @@ $output = & net accounts 2>$null
 $line = $output | Where-Object { $_ -match 'Lockout observation window' }
 
 if (-not $line) {
-    Write-Output 'FAIL — expected Reset account lockout counter after >= 15, got <not found>'
+    Write-Output 'FAIL - expected Reset account lockout counter after >= 15, got <not found>'
     exit 1
 }
 
 $m = [regex]::Match(($line -join ''), ':\s*(\d+)')
 
 if (-not $m.Success) {
-    Write-Output "FAIL — expected Reset account lockout counter after >= 15, got $line"
+    Write-Output "FAIL - expected Reset account lockout counter after >= 15, got $line"
     exit 1
 }
 
@@ -35,5 +35,5 @@ if ($value -ge 15) {
     exit 0
 }
 
-Write-Output "FAIL — expected Reset account lockout counter after >= 15, got $value"
+Write-Output "FAIL - expected Reset account lockout counter after >= 15, got $value"
 exit 1

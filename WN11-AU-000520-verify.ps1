@@ -15,7 +15,7 @@
 $logFile = Join-Path $env:SystemRoot 'System32\winevt\Logs\Security.evtx'
 
 if (-not (Test-Path -LiteralPath $logFile)) {
-    Write-Output "FAIL — expected log file $logFile, got <missing>"
+    Write-Output "FAIL - expected log file $logFile, got <missing>"
     exit 1
 }
 
@@ -37,7 +37,7 @@ foreach ($name in $required) {
         ($_.FileSystemRights -band 'FullControl') -eq 'FullControl'
     }
     if (-not $match) {
-        Write-Output "FAIL — expected $name FullControl, got <missing or insufficient>"
+        Write-Output "FAIL - expected $name FullControl, got <missing or insufficient>"
         exit 1
     }
 }
@@ -50,7 +50,7 @@ $others = $acl.Access | Where-Object {
 if ($others) {
     $names = (($others | ForEach-Object { Get-AccountName $_.IdentityReference }) |
         Sort-Object -Unique) -join ', '
-    Write-Output "FAIL — expected no non-privileged allow rules, got $names"
+    Write-Output "FAIL - expected no non-privileged allow rules, got $names"
     exit 1
 }
 

@@ -17,19 +17,19 @@ $output = & net accounts 2>$null
 $line = ($output | Where-Object { $_ -match 'Length of password history' }) -join ''
 
 if (-not $line) {
-    Write-Output 'FAIL — expected Enforce password history >= 24, got <not found>'
+    Write-Output 'FAIL - expected Enforce password history >= 24, got <not found>'
     exit 1
 }
 
 if ($line -match 'None') {
-    Write-Output 'FAIL — expected Enforce password history >= 24, got None (0)'
+    Write-Output 'FAIL - expected Enforce password history >= 24, got None (0)'
     exit 1
 }
 
 $m = [regex]::Match($line, ':\s*(\d+)')
 
 if (-not $m.Success) {
-    Write-Output "FAIL — expected Enforce password history >= 24, got $line"
+    Write-Output "FAIL - expected Enforce password history >= 24, got $line"
     exit 1
 }
 
@@ -40,5 +40,5 @@ if ($value -ge 24) {
     exit 0
 }
 
-Write-Output "FAIL — expected Enforce password history >= 24, got $value"
+Write-Output "FAIL - expected Enforce password history >= 24, got $value"
 exit 1

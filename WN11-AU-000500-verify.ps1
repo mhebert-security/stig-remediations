@@ -19,7 +19,7 @@ $required  = 32768
 $actual = (Get-ItemProperty -Path $regPath -Name $valueName -ErrorAction SilentlyContinue).$valueName
 
 if ($null -eq $actual) {
-    Write-Output "FAIL — expected $valueName >= $required, got <not present>"
+    Write-Output "FAIL - expected $valueName >= $required, got <not present>"
     exit 1
 }
 
@@ -28,5 +28,5 @@ if ([int]$actual -ge $required) {
     exit 0
 }
 
-Write-Output "FAIL — expected $valueName >= $required, got $actual"
+Write-Output "FAIL - expected $valueName >= $required, got $actual"
 exit 1

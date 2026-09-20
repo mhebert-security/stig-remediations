@@ -17,19 +17,19 @@ $output = & net accounts 2>$null
 $line = ($output | Where-Object { $_ -match 'Lockout threshold' }) -join ''
 
 if (-not $line) {
-    Write-Output 'FAIL — expected Account lockout threshold 1-3, got <not found>'
+    Write-Output 'FAIL - expected Account lockout threshold 1-3, got <not found>'
     exit 1
 }
 
 if ($line -match 'Never') {
-    Write-Output 'FAIL — expected Account lockout threshold 1-3, got Never (0)'
+    Write-Output 'FAIL - expected Account lockout threshold 1-3, got Never (0)'
     exit 1
 }
 
 $m = [regex]::Match($line, ':\s*(\d+)')
 
 if (-not $m.Success) {
-    Write-Output "FAIL — expected Account lockout threshold 1-3, got $line"
+    Write-Output "FAIL - expected Account lockout threshold 1-3, got $line"
     exit 1
 }
 
@@ -40,5 +40,5 @@ if ($value -ge 1 -and $value -le 3) {
     exit 0
 }
 
-Write-Output "FAIL — expected Account lockout threshold 1-3, got $value"
+Write-Output "FAIL - expected Account lockout threshold 1-3, got $value"
 exit 1
