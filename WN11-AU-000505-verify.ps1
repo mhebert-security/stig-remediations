@@ -5,16 +5,16 @@
 
 .DESCRIPTION
     Reads HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security\MaxSize
-    and checks it is 1024000 (0x000fa000) or greater.
+    and checks it is 5120000 (0x4E2000) or greater.
 
 .NOTES
     STIG-ID   : WN11-AU-000505
-    Reference : https://stigaview.com/products/win11/v2r5/WN11-AU-000505
+    Reference : https://stigaview.com/products/win11/v2r8/WN11-AU-000505
 #>
 
 $regPath  = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security'
 $valueName = 'MaxSize'
-$required  = 1024000
+$required  = 5120000
 
 $actual = (Get-ItemProperty -Path $regPath -Name $valueName -ErrorAction SilentlyContinue).$valueName
 
